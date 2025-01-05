@@ -16,3 +16,17 @@ const LecturerSchema = new mongoose.Schema({
 const Lecturer = mongoose.model('lecturers', LecturerSchema);
 
 module.exports = Lecturer;
+
+//method for getting all the lecturers
+const getLecturers = async () => {
+    try {
+      return await Lecturer.find({}).sort({ _id: 1 });
+    } catch (err) {
+      console.error("Error fetching lecturers:", err);
+      throw err;
+    }
+  };
+
+  module.exports = {
+    getLecturers
+  };
