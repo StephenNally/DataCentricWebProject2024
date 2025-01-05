@@ -2,7 +2,7 @@ const {getAllStudents,
     getAllGrades
 } = require('./MySqlDao');
 
-const { getLecturers} = require('./myMongoDB');
+const { getLecturers, deleteLecturersById} = require('./myMongoDB');
 
 var express = require('express');
 var app = express();
@@ -45,13 +45,14 @@ app.get('/lecturers', async (req, res) => {
     }
   });
   
-  // DELETE lecturer
-  app.get('/delete/:lid', async (req, res) => {
+  //method to delete a lecturer by id
+app.get("/lecturers/delete/:id", async (req, res) => {
     try {
-      await Lecturer.deleteOne({ _id: req.params.lid });
-      res.redirect('/lecturers');
+      await deleteLecturersById(req.params.id); // Call the MongoDB method
+      res.redirect("/lecturers"); // Redirect to the lecturers page after successful deletion
     } catch (err) {
-      res.status(500).send('Error deleting lecturer');
+      console.error("Error deleting lecturer:", err);
+      res.status(500).send("Error deleting lecturer from database");
     }
   });
 

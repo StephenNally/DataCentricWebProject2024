@@ -27,6 +27,20 @@ const getLecturers = async () => {
     }
   };
 
+  //method for getting all the lecturers
+const deleteLecturersById = async (_id) => {
+    try {
+      const results = await Lecturer.findByIdAndDelete(_id);
+      return results;
+    } catch (err) {
+      console.error("Error fetching lecturers:", err);
+      throw err;
+    }
+  };
+
+
+
   module.exports = {
-    getLecturers
+    getLecturers,
+    deleteLecturersById,
   };
