@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../MySqlDao');
 
-// GET Grades Page
+// GET grades page
 router.get('/', async (req, res) => {
   try {
     const [grades] = await db.query(`

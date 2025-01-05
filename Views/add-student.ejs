@@ -1,0 +1,19 @@
+<h1>Add Student</h1>
+<a href="/students">Back to Students</a>
+
+<form method="POST" action="/students/add">
+  <label for="sid">Student ID:</label>
+  <input type="text" id="sid" name="sid" required />
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" name="age" required />
+
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+
+  <button type="submit">Add Student</button>
+</form>

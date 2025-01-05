@@ -1,20 +1,20 @@
 var pmysql = require('promise-mysql');
 var pool;
 
-
 pmysql.createPool({
-
-    connectionLimit :1,
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'proj2024mysql'
-
+  connectionLimit: 1,
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'proj2024mysql'
 })
-.then((p)=> {
+  .then((p) => {
     pool = p;
-})
+  })
+  .catch(e => {
+    console.log('pool error ' + e);
+  });
 
-.catch(e => {
-    console.log("pool error" + e)
-})
+module.exports = {
+  query: (sql, params) => pool.query(sql, params)
+};
