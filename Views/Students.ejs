@@ -1,0 +1,26 @@
+<table></table>
+    <h1>Students</h1>
+    </div>
+
+    <tr>
+        <th> ID</th>
+        <th> Name</th>
+        <th> Age</th>
+        <th> Action</th>
+    </tr>
+    <% theStudents.forEach((student)=>
+        { %>
+        <tr>
+            <td>
+                <%= student.sid %>
+            </td>
+            <td>
+                <%= student.name %>
+            </td>
+            <td>
+                <%= student.age %>
+            </td>
+        
+        </tr>
+        <% }) %>
+</table>
