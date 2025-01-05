@@ -1,17 +1,12 @@
-var express = require('express')
-let ejs = require('ejs')
-var mySqlDao = require('./MySqlDao')
-var myMongoDB = require('./myMongoDB')
-var bodyParser = require('body-parser')
-const { body, validationResult } = require('express-validator');
-
-
+var express = require('express');
 var app = express();
+var studentsRoutes = require('./routes/students');
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: false}))
+// Routes
+app.use('/students', studentsRoutes);
 
 app.listen(3004, () => {
-console.log("Server is running on port 3004")
-})
+  console.log('Server running on port 3004');
+});
