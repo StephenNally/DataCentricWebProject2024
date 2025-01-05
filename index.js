@@ -1,5 +1,6 @@
 const {getAllStudents,
-    getAllGrades
+    getAllGrades,
+    addStudent
 } = require('./MySqlDao');
 
 const { getLecturers, deleteLecturersById} = require('./myMongoDB');
@@ -66,12 +67,17 @@ app.get('/students', async (req, res) => {
       res.status(500).send('Error fetching students');
     }
   });
+
+    // GET all students
+app.get('/students/add', async (req, res) => {
+    res.render("add-student")
+  });
   
   // Add a student
-  app.post('/add', async (req, res) => {
+  app.post('/students/add', async (req, res) => {
     const { sid, name, age } = req.body;
     try {
-      await db.addStudent(sid, name, age); // Call the addStudent method
+      await addStudent(sid, name, age); // Call the addStudent method
       res.redirect('/students');
     } catch (err) {
       console.error('Error adding student:', err);
